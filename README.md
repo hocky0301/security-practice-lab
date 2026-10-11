@@ -80,7 +80,7 @@ REPO_URL=https://github.com/hocky0301/security-practice-lab.git scripts/verify_f
 - CI：プルリクエストと `main` への push で、Python 3.10、3.11、3.12 それぞれについて、単体テストと `verify_reproduction.py` を走らせます。権限は `contents: read` だけで、チェックアウト時に認証情報を残しません。使うActionは完全なコミットSHAで固定しています。
 - Dependabot：GitHub Actionsのバージョンだけを、週に1回確認します。このリポジトリは外部の依存パッケージを持ちません。
 
-これらはGitHubに公開してから動き始めます。2026-10-11 時点では、GitHub上で一度も走っていません。結果はリポジトリの Actions タブで見られます。手元では、Python 3.10、3.11、3.12 で同じ2つの確認を実行しました。
+これらはGitHubに公開してから動き始めました。公開した直後（2026-10-11）に、main への push で CI が1回走り、Python 3.10・3.11・3.12 とも通りました（[実行の記録](https://github.com/hocky0301/security-practice-lab/actions/runs/38110268802)）。同じ時刻に Dependabot が、Actions の版を上げる提案を2件出しました（[#1](https://github.com/hocky0301/security-practice-lab/pull/1)・[#2](https://github.com/hocky0301/security-practice-lab/pull/2)。どちらも大きい版の更新で、取り込むかは検討中です）。結果はリポジトリの Actions タブで見られます。手元では、Python 3.10、3.11、3.12 で同じ2つの確認を実行しました。
 
 ## 利用条件
 
