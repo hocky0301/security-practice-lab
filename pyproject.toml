@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "security-practice-lab"
+version = "0.1.0"
+description = "Small local experiments on what release approval, tool permission, budget, memory and observation checks do and do not guarantee."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "LicenseRef-Permission-Required"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["security_lab*"]

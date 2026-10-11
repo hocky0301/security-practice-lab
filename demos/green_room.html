@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>緑のままの部屋 — 観測と表示の境界</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;color-scheme:dark;background:#0c1420;color:#edf2f8;line-height:1.7}*{box-sizing:border-box}body{margin:0}main{max-width:1030px;margin:auto;padding:36px 24px 70px}.eyebrow{font-size:12px;letter-spacing:.16em;color:#91a8bf}h1{font-size:clamp(26px,4.2vw,44px);line-height:1.35;max-width:780px;margin:15px 0}h2{font-size:19px;margin:0 0 15px}p{max-width:830px}.intro{color:#bdd0df}.scene{border:1px solid #42546a;padding:22px;background:#111f2e;border-radius:14px;margin:26px 0}.visual{height:155px;position:relative;background:repeating-linear-gradient(90deg,transparent 0,transparent 59px,#243144 60px),linear-gradient(#14263b,#0a1828);overflow:hidden;border-radius:9px}.axis{position:absolute;top:108px;width:100%;height:1px;background:#63748a}.bird{position:absolute;top:46px;width:38px;height:38px;border-radius:50% 50% 45% 45%;background:#dfce9f;transition:left .22s;transform:translateX(-50%)}.bird:after{content:"";position:absolute;top:8px;left:29px;border-left:17px solid #dfce9f;border-top:6px solid transparent;border-bottom:6px solid transparent}.actual{position:absolute;top:93px;width:10px;height:10px;border-radius:50%;background:#56c9ff;transform:translateX(-50%)}.legend{font-size:13px;color:#b5c9da;margin:10px 0 0}.controls{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}button{font:inherit;border:1px solid #668198;border-radius:8px;padding:11px 15px;background:#21384e;color:#fff;cursor:pointer}button:focus-visible{outline:3px solid #efc978;outline-offset:3px}button:disabled{cursor:default;opacity:.5}.primary{background:#3e3340;border-color:#c9a2bd}.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{border:1px solid #40546a;border-radius:12px;padding:20px;background:#101f2d}.label{font-size:13px;color:#9bb3c9}.number{font-size:36px;font-weight:700;margin:8px 0}.status{display:inline-block;border-radius:6px;padding:4px 9px;font-weight:700}.ok{color:#a2f5c4;background:#173f35}.bad{color:#ffd0c1;background:#532e31}code{font-family:ui-monospace,Consolas,monospace;font-size:.85em;overflow-wrap:anywhere}.detail{font-size:13px;color:#bad0e1}.explain{padding:20px;border-left:3px solid #75adca;background:#15283a;margin:25px 0}.tablewrap{overflow-x:auto}table{border-collapse:collapse;min-width:530px;width:100%;font-size:13px}th,td{border-bottom:1px solid #314459;padding:9px;text-align:left}th{color:#adc5da}.note{font-size:13px;color:#a6bdcf}footer{margin-top:32px;border-top:1px solid #33485c;padding-top:20px;color:#95acbf;font-size:13px}@media(max-width:600px){main{padding:22px 16px 42px}.cards{grid-template-columns:1fr}.scene{padding:14px}.card{padding:16px}button{font-size:14px;padding:10px 12px}.number{font-size:30px}}
+</style></head><body><main>
+<div class="eyebrow">LOCAL DEMONSTRATION · SYNTHETIC INPUT ONLY</div>
+<h1>カメラを止める。<br>画面は、まだ動いている。</h1>
+<p class="intro">「更新された画面」と「新しく測った世界」は違う。観測だけを止めて、時刻を進めてみてください。外部通信・実カメラ・AIモデルを使わない、決定論的な表示実験です。</p>
+<div class="controls"><button class="primary" id="freeze">観測を止める</button><button id="step">100ms進める</button><button id="second">1秒進める</button><button id="resume" disabled>観測を戻す</button><button id="reset">リセット</button></div>
+<div class="scene"><div class="label" id="clock"></div><div class="visual" aria-hidden="true"><div class="axis"></div><div class="bird" id="bird"></div><div class="actual" id="actual"></div></div><p class="legend">鳥：画面に描く位置（観測停止中は予測を模擬）　青い点：最後に「測った」とした位置</p><p class="detail" id="mode"></p></div>
+<div class="cards" aria-live="polite"><section class="card"><h2>画面の時刻だけを見た判定</h2><div class="label">描画からの経過</div><div class="number" id="render-age"></div><div id="render-state" class="status ok"></div><p class="detail">描くたびに時刻が新しくなる。観測停止中も、この指標だけでは正常に見える。</p></section><section class="card"><h2>観測の時刻と種類を見た判定</h2><div class="label">最後の実測からの経過</div><div class="number" id="measured-age"></div><div id="evidence-state" class="status"></div><p class="detail">この例は実測が必要な操作。予測は描画に使えても、実行を許す証拠にはしない。鮮度の上限は例として250ms。</p></section></div>
+<div class="explain" id="explanation"></div>
+<h2>操作によって得た記録</h2><div class="tablewrap"><table><thead><tr><th>時刻</th><th>実測の古さ</th><th>描画の古さ</th><th>種類</th><th>証拠側の判定</th></tr></thead><tbody id="log"></tbody></table></div>
+<p class="note">二つの監視器が同じ描画状態だけを見れば、二つとも正常と判定できる。それは独立した二つの証拠が得られたこととは違います。このデモは規則の比較であり、実際の監視LLMを二つ実行した試験ではありません。</p>
+<footer>このHTMLはローカルの教育用デモ。認証・カメラ・モーター・MCPへの接続はありません。時刻は同一の模擬単調時計です。予測制御を一般に禁止する設計ではなく、特定操作の証拠条件を分ける例です。コード内のルールが通っても、認証されたセンサーが正しい世界を報告することは証明できません。</footer>
+</main><script>
+'use strict';
+let state;const byId=id=>document.getElementById(id);
+function evidence(s){if(s.now-s.measured>250)return 'MEASUREMENT_TOO_OLD';if(s.kind!=='measured')return 'PREDICTION_NOT_OBSERVATION';return 'ALLOW_FRESH_OBSERVATION';}
+function position(time){return 50+33*Math.sin((time-1000)/600);}
+function draw(record=true){const decision=evidence(state),age=state.now-state.measured;
+ byId('clock').textContent=`模擬時刻 ${state.now} ms / session: local-demo-1`;
+ byId('mode').textContent=`観測：${state.frozen?'停止中':'更新中'} / 表示の種類：${state.kind} / 実測時刻：${state.measured} ms`;
+ byId('bird').style.left=position(state.now)+'%';byId('actual').style.left=position(state.measured)+'%';
+ byId('render-age').textContent='0 ms';byId('measured-age').textContent=age+' ms';
+ byId('render-state').textContent='表示は新しい';const elem=byId('evidence-state');elem.textContent=decision;elem.className='status '+(decision==='ALLOW_FRESH_OBSERVATION'?'ok':'bad');
+ byId('freeze').disabled=state.frozen;byId('resume').disabled=!state.frozen;
+ byId('explanation').textContent=state.frozen?`画面は${state.now}ms時点で描き直しましたが、実測は${state.measured}msのままです。描画を更新しても、${age}ms前の観測が新しくなることはありません。`:'観測と画面の両方を更新しています。「観測を止める」を押し、時刻を進めると二つの状態が分かれます。';
+ if(record){state.log.push({now:state.now,measurement_age_ms:age,render_age_ms:0,kind:state.kind,decision});if(state.log.length>30)state.log.shift();}
+ byId('log').replaceChildren(...state.log.slice().reverse().map(row=>{const tr=document.createElement('tr');[row.now,row.measurement_age_ms,row.render_age_ms,row.kind,row.decision].forEach(value=>{const td=document.createElement('td');td.textContent=String(value);tr.appendChild(td)});return tr}));
+ window.demoTestState={now:state.now,frozen:state.frozen,measurement_age_ms:age,render_age_ms:0,kind:state.kind,decision,log:[...state.log]};
+}
+function action(name){if(name==='reset'){state={now:1000,measured:1000,frozen:false,kind:'measured',log:[]};draw();return;}
+ if(name==='freeze'){state.frozen=true;state.kind='predicted';}
+ else if(name==='resume'){state.frozen=false;state.measured=state.now;state.kind='measured';}
+ else if(name==='step'||name==='second'){state.now+=(name==='step'?100:1000);if(!state.frozen){state.measured=state.now;state.kind='measured';}}
+ draw();}
+['freeze','step','second','resume','reset'].forEach(id=>byId(id).addEventListener('click',()=>action(id)));window.applyDemoAction=action;action('reset');
+</script></body></html>

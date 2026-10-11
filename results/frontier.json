@@ -1,0 +1,154 @@
+{
+  "schema": "frontier-experiments-v2",
+  "release": {
+    "matching": "ALLOW_REVIEWED_RELEASE",
+    "same_digest_other_workflow": "WORKFLOW_MISMATCH",
+    "same_digest_other_destination": "DESTINATION_MISMATCH",
+    "visibility_changed": "VISIBILITY_MISMATCH",
+    "expired": "EXPIRED",
+    "scope": "Policy fixture after assumed signature verification; no signatures issued/verified."
+  },
+  "tool_contracts": {
+    "package_lock_unchanged": true,
+    "same_descriptor": "ALLOW_REVIEWED_DESCRIPTOR",
+    "description_changed": "DESCRIPTOR_CHANGED",
+    "same_metadata_unpermitted_effect": "OPERATION_NOT_GRANTED",
+    "scope": "Synthetic tool descriptors; no live scanner, MCP transport or remote enforcement."
+  },
+  "budget": {
+    "requests": 100,
+    "per_call_limit": 100,
+    "request_units": 80,
+    "total_limit": 300,
+    "per_call_only_total": 8000,
+    "shared_decisions": {
+      "RESERVED": 3,
+      "TOTAL_BUDGET_EXCEEDED": 97
+    },
+    "shared_snapshot": {
+      "total": 300,
+      "per_call": 100,
+      "epoch": 1,
+      "stopped": false,
+      "reserved_or_spent": 240,
+      "remaining": 60,
+      "dry_effects": 0
+    },
+    "units": "synthetic units, not money",
+    "queued_after_stop_resume": "OLD_EPOCH",
+    "new_job_after_resume": "DRY_RUN_ONLY",
+    "unknown_outcome_reserved": 80,
+    "unknown_outcome_retry": "OUTCOME_UNRESOLVED"
+  },
+  "memory": {
+    "old_grant_only_reference": true,
+    "summary_claims_allowed_current_ledger": "NO_CURRENT_GRANT",
+    "old_snapshot_against_current_head": "POLICY_VIEW_NOT_CURRENT",
+    "new_explicit_grant": "ALLOW_CURRENT_GRANT",
+    "scope": "Handwritten summary fixture; not LLM memory accuracy or EAL-Bench reproduction."
+  },
+  "evidence": {
+    "timeline": [
+      {
+        "now_ms": 1000,
+        "measured_ms": 1000,
+        "rendered_ms": 1000,
+        "measurement_age_ms": 0,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "ALLOW_FRESH_OBSERVATION"
+      },
+      {
+        "now_ms": 1100,
+        "measured_ms": 1000,
+        "rendered_ms": 1100,
+        "measurement_age_ms": 100,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "PREDICTION_NOT_OBSERVATION"
+      },
+      {
+        "now_ms": 1200,
+        "measured_ms": 1000,
+        "rendered_ms": 1200,
+        "measurement_age_ms": 200,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "PREDICTION_NOT_OBSERVATION"
+      },
+      {
+        "now_ms": 1300,
+        "measured_ms": 1000,
+        "rendered_ms": 1300,
+        "measurement_age_ms": 300,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      },
+      {
+        "now_ms": 1400,
+        "measured_ms": 1000,
+        "rendered_ms": 1400,
+        "measurement_age_ms": 400,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      },
+      {
+        "now_ms": 1500,
+        "measured_ms": 1000,
+        "rendered_ms": 1500,
+        "measurement_age_ms": 500,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      },
+      {
+        "now_ms": 1600,
+        "measured_ms": 1000,
+        "rendered_ms": 1600,
+        "measurement_age_ms": 600,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      },
+      {
+        "now_ms": 1700,
+        "measured_ms": 1000,
+        "rendered_ms": 1700,
+        "measurement_age_ms": 700,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      },
+      {
+        "now_ms": 1800,
+        "measured_ms": 1000,
+        "rendered_ms": 1800,
+        "measurement_age_ms": 800,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      },
+      {
+        "now_ms": 1900,
+        "measured_ms": 1000,
+        "rendered_ms": 1900,
+        "measurement_age_ms": 900,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      },
+      {
+        "now_ms": 2000,
+        "measured_ms": 1000,
+        "rendered_ms": 2000,
+        "measurement_age_ms": 1000,
+        "render_age_ms": 0,
+        "display_check": true,
+        "evidence_decision": "MEASUREMENT_TOO_OLD"
+      }
+    ],
+    "scope": "Synthetic monotonic clock; no camera, perception, network or robot used."
+  }
+}

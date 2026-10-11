@@ -1,0 +1,222 @@
+{
+  "scope": "synthetic-local-only",
+  "authority": [
+    {
+      "decision": "ACCEPT",
+      "result": {
+        "accepted": true,
+        "effect": "DRY_RUN_ONLY",
+        "request_hash": "88d784d2573ecc0719ff3cb10c6b1b18063340c32707d927a58d6e811612a10d",
+        "epoch": 1
+      },
+      "case": "approved",
+      "receipt_count": 1
+    },
+    {
+      "decision": "DENY",
+      "reason": "CONTENT_CHANGED",
+      "case": "content_changed",
+      "receipt_count": 0
+    },
+    {
+      "decision": "DENY",
+      "reason": "IDENTITY_MISMATCH",
+      "case": "actor_changed",
+      "receipt_count": 0
+    },
+    {
+      "decision": "DENY",
+      "reason": "IDENTITY_MISMATCH",
+      "case": "audience_changed",
+      "receipt_count": 0
+    },
+    {
+      "decision": "DENY",
+      "reason": "EXPIRED_OR_CLOCK",
+      "case": "expired",
+      "receipt_count": 0
+    },
+    {
+      "decision": "DENY",
+      "reason": "STOPPED",
+      "case": "stopped",
+      "receipt_count": 0
+    },
+    {
+      "decision": "DENY",
+      "reason": "REVOKED",
+      "case": "stopped_then_resumed",
+      "receipt_count": 0
+    },
+    {
+      "decision": "DENY",
+      "reason": "REVOKED",
+      "case": "policy_changed",
+      "receipt_count": 0
+    },
+    {
+      "decision": "DENY",
+      "reason": "ALREADY_USED",
+      "case": "replayed_after_restart",
+      "receipt_count": 1
+    },
+    {
+      "decision": "DENY",
+      "reason": "OBSERVATION_STALE",
+      "case": "observation_stale",
+      "receipt_count": 0
+    },
+    {
+      "decision": "ACCEPT",
+      "result": {
+        "accepted": true,
+        "effect": "DRY_RUN_ONLY",
+        "request_hash": "88d784d2573ecc0719ff3cb10c6b1b18063340c32707d927a58d6e811612a10d",
+        "epoch": 3
+      },
+      "case": "new_grant_after_resume",
+      "receipt_count": 1
+    }
+  ],
+  "release": {
+    "approved_export": {
+      "decision": "ACCEPT",
+      "result": {
+        "files": 1,
+        "input_bytes": 21,
+        "archive_sha256": "7485f6fe6407bf6631a419a4a5c0ff37bec9e6817d28df2932e07a517413c51e",
+        "names": [
+          "code/demo.py"
+        ]
+      }
+    },
+    "changed_after_review": {
+      "decision": "DENY",
+      "reason": "CONTENT_CHANGED"
+    }
+  },
+  "dependencies": [
+    {
+      "case": "complete_clean",
+      "decision": "PASS",
+      "result": {
+        "verdict": "PASS",
+        "blocking_advisories": [],
+        "temporary_exceptions": [],
+        "scope": "normalized-fixture-policy-not-live-scan"
+      }
+    },
+    {
+      "case": "high_no_exception",
+      "decision": "BLOCK",
+      "result": {
+        "verdict": "BLOCK",
+        "blocking_advisories": [
+          "DEMO-001"
+        ],
+        "temporary_exceptions": [],
+        "scope": "normalized-fixture-policy-not-live-scan"
+      }
+    },
+    {
+      "case": "temporary_exception",
+      "decision": "PASS",
+      "result": {
+        "verdict": "PASS",
+        "blocking_advisories": [],
+        "temporary_exceptions": [
+          "DEMO-001"
+        ],
+        "scope": "normalized-fixture-policy-not-live-scan"
+      }
+    },
+    {
+      "case": "expired_exception",
+      "decision": "DENY",
+      "reason": "EXCEPTION_EXPIRED_OR_TOO_LONG"
+    },
+    {
+      "case": "scanner_incomplete",
+      "decision": "DENY",
+      "reason": "SCAN_INCOMPLETE"
+    },
+    {
+      "case": "inventory_changed",
+      "decision": "DENY",
+      "reason": "INVENTORY_CHANGED"
+    },
+    {
+      "case": "stale_report",
+      "decision": "DENY",
+      "reason": "SCAN_STALE"
+    }
+  ],
+  "audit": {
+    "original": {
+      "decision": "ACCEPT",
+      "result": true
+    },
+    "truncated": {
+      "decision": "DENY",
+      "reason": "ANCHOR_COUNT"
+    },
+    "rebuilt_old_anchor": {
+      "decision": "DENY",
+      "reason": "CHAIN_MISMATCH"
+    },
+    "rebuilt_replaced_anchor": {
+      "decision": "ACCEPT",
+      "result": true
+    }
+  },
+  "observations": [
+    {
+      "case": "fresh",
+      "decision": "ACCEPT",
+      "result": true
+    },
+    {
+      "case": "prediction",
+      "decision": "DENY",
+      "reason": "NOT_MEASUREMENT"
+    },
+    {
+      "case": "old",
+      "decision": "DENY",
+      "reason": "STALE_OR_FUTURE"
+    },
+    {
+      "case": "other_session",
+      "decision": "DENY",
+      "reason": "CLOCK_OR_SESSION"
+    },
+    {
+      "case": "not_new",
+      "decision": "DENY",
+      "reason": "NOT_NEW"
+    },
+    {
+      "case": "future",
+      "decision": "DENY",
+      "reason": "STALE_OR_FUTURE"
+    },
+    {
+      "case": "unknown_quality",
+      "decision": "DENY",
+      "reason": "QUALITY"
+    }
+  ],
+  "recovery": {
+    "motions": 1,
+    "restored_data_hash": "a4001b5dc3d27cf3f9425b3829e7e0bed244ef877dcc70424e428c407d1e6186",
+    "authorization_count": 0,
+    "stopped": true,
+    "epoch": 9,
+    "scope": "local-recovery-fixture"
+  },
+  "residual_authority": {
+    "coarse_lease_area": 180,
+    "revocation_area": 6,
+    "unit": "operation-seconds; diagnostic, not probability"
+  }
+}

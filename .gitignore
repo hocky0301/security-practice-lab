@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+results-local/
+results-ci/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+.env
+.env.*
+.DS_Store
+results-original-local/
+results-frontier-local/
+verification_report.json
+*.egg-info/
+build/
+dist/

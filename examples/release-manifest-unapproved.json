@@ -1,0 +1,11 @@
+{
+  "schema": "release-v1",
+  "reviewed_by": "pending-human-review",
+  "files": [
+    {
+      "path": "demo.txt",
+      "sha256": "27305f878dab8352e71a7b992122e48050294cabaed331db44407f895e480aef",
+      "approved": false
+    }
+  ]
+}
